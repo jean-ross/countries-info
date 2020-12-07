@@ -1,0 +1,25 @@
+#page-dashboard {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0 auto;
+}
+
+#page-dashboard header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--primary-color);
+  color: var(--title-color);
+  height: 150px;
+}
+
+#page-dashboard header h1 {
+  font-size: 42px;
+}
+
+#page-dashboard main {
+  margin: 24px auto;
+  width: 80%;
+}

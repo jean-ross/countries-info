@@ -1,0 +1,40 @@
+#page-country-form {
+  width: 100vw;
+  height: 100vh;
+
+  margin: 0 auto;
+}
+
+#page-country-form header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: var(--primary-color);
+  color: var(--title-color);
+  height: 150px;
+}
+
+#page-country-form header h1 {
+  font-size: 42px;
+}
+
+#page-country-form main {
+  margin: 24px auto;
+  width: 80%;
+}
+
+#page-country-form main a {
+  color: var(--color-text-title);
+  font-size: 16px;
+  font-weight: bold;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+}
+
+#page-country-form main a svg {
+  margin-right: 8px;
+  color: var(--primary-color);
+}
