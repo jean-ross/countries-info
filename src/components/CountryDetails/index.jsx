@@ -217,7 +217,7 @@ const CountryDetails = () => {
           </fieldset>
 
           <button type="submit">
-            Salvar
+            Save
             </button>
         </form>
       )}
