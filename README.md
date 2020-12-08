@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+<p align="center">
+  <img src="./screenshots/Home.png"/>
+  <br><br>
+  <img src="./screenshots/Form.png"/>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h1 align="center">Countries of the World</h1>
+<p align="center">Projeto <strong>Countries of the World</strong>, desenvolvido em React.</p>
+<p align="center">A aplicação está publicada e pode ser testada no endereço https://wcountries.netlify.app/ e permite visualizar a lista de países do mundo, utilizando a API <a href="https://github.com/lennertVanSever/graphcountries">Graph Countries</a>.</p>
 
-## Available Scripts
+## Funcionalidades
 
-In the project directory, you can run:
+Esse projeto possui as seguintes funcionalidades:
 
-### `yarn start`
+- Exibir a lista de países do mundo
+- Buscar países na lista
+- Visualizar detalhes do país
+- Editar detalhes do país (a edição é aplicada somente no client-side)
+- Visualizar a localização do país em um mapa, assim como a dos 5 países mais próximos dele, exibindo a distância deles do país selecionado
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Instalação e execução
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+_ps: Se precisar de ajuda para fazer um clone, esse [tutorial aqui](https://help.github.com/pt/github/creating-cloning-and-archiving-repositories/cloning-a-repository) vai te ajudar 💖_
 
-### `yarn test`
+1. Abra o terminal do seu computador. Se estiver no Windows pode ser o CMD ou Powershell;
+2. Altere o diretório de trabalho atual para o local em que deseja ter o código da aplicação salvo no seu computador;
+3. Faça um clone desse repositório rodando: <br> `git clone https://github.com/jean-ross/countries-info.git`;
+4. Entre na pasta rodando pelo terminal: `cd countries-info`;
+5. Crie uma cópia do arquivo `.env.example` com o nome `.env`, na mesma pasta do arquivo de origem;
+6. Abra o arquivo `.env` e configure o valor da variável de ambiente `REACT_APP_MAPBOX_TOKEN=` com um token válido da API do [Mapbox](https://www.mapbox.com/) (criado gratuitamente);
+7. Rode `yarn` para instalar as dependências do projeto;
+8. Rode `yarn start` para iniciar o servidor de desenvolvimento.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## :memo: Licença
 
-### `yarn build`
+Esse projeto está sob a licença MIT.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Feito com ♥ by Jean Ross :wave:
