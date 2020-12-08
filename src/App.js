@@ -6,6 +6,7 @@ import api from './services/api';
 import Routes from './routes';
 
 import './App.css';
+import 'leaflet/dist/leaflet.css';
 import store from './store';
 
 function App() {

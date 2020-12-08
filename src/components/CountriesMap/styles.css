@@ -1,0 +1,14 @@
+.leaflet-container {
+  margin-bottom: 40px;
+  border: 1px solid #D3E2E5;
+  border-radius: 20px;
+}
+
+.map-popup .leaflet-popup-content-wrapper,
+.map-popup .leaflet-popup-tip {
+  background: var(--background-color);
+}
+
+.map-popup .leaflet-popup-content {
+  text-align: center;
+}

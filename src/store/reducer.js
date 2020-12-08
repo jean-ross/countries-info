@@ -23,7 +23,7 @@ function countries(state = INITIAL_STATE, action) {
     case 'ADD_COUNTRY_DETAILS': {
       return {
         ...state,
-        data: state.data.map((country, index) => {
+        data: state.data.map(country => {
           if (country.name !== action.country.name || country.loadedDetails) {
             return country;
           }
@@ -33,6 +33,8 @@ function countries(state = INITIAL_STATE, action) {
             area: action.country.area,
             population: action.country.population,
             topLevelDomains: action.country.topLevelDomains[0].name,
+            latitude: action.country.location.latitude,
+            longitude: action.country.location.longitude,
             loadedDetails: true
           };
         })

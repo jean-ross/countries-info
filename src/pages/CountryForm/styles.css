@@ -24,7 +24,7 @@
   width: 80%;
 }
 
-#page-country-form main a {
+#page-country-form main>a {
   color: var(--color-text-title);
   font-size: 16px;
   font-weight: bold;
@@ -34,7 +34,7 @@
   align-items: center;
 }
 
-#page-country-form main a svg {
+#page-country-form main>a svg {
   margin-right: 8px;
   color: var(--primary-color);
 }

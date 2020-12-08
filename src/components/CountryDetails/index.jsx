@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useLazyQuery, useQuery } from '@apollo/client';
 import { useDispatch, useSelector } from 'react-redux';
+
+import CountriesMap from '../CountriesMap';
+
+import formatValue from '../../utils/formatValue';
 
 import './styles.css';
 
@@ -19,6 +23,32 @@ const COUNTRY_DETAILS = gql`
       emoji
       svgFile
     }
+    location {
+      latitude
+      longitude
+    }
+    distanceToOtherCountries(first: 5) {
+      distanceInKm
+      countryName
+    }
+  }
+}
+`;
+
+const NEAREST_COUNTRIES = gql`
+  query Country($names: [String!]) {
+	Country(filter:{
+    name_in: $names
+  }) {
+    name
+    location {
+      latitude
+      longitude
+    }
+    flag {
+      emoji
+      svgFile
+    }
   }
 }
 `;
@@ -27,6 +57,8 @@ const CountryDetails = () => {
   const { name: countryName } = useParams();
 
   const [country, setCountry] = useState();
+  const [nearestCountries, setNearestCountries] = useState([]);
+  const [loadedNearestCountries, setLoadedNearestCountries] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     capital: '',
@@ -39,6 +71,8 @@ const CountryDetails = () => {
     variables: { name: countryName },
   });
 
+  const [getNearestCountriesData, { data: nearestCountriesData }] = useLazyQuery(NEAREST_COUNTRIES);
+
   const history = useHistory();
   const countries = useSelector(state => state.data);
   const dispatch = useDispatch();
@@ -47,6 +81,26 @@ const CountryDetails = () => {
     if (data && data.Country) {
       if (countries) {
         const storedCountry = countries.find(item => item.name === data.Country[0].name);
+
+        if (!storedCountry) {
+          history.push('/');
+          return;
+        }
+
+        if (!nearestCountries.length) {
+          const countriesDistances = data.Country[0].distanceToOtherCountries.map(anotherCountry => ({
+            name: anotherCountry.countryName,
+            distanceInKm: formatValue(anotherCountry.distanceInKm)
+          }));
+
+          setNearestCountries(countriesDistances);
+
+          getNearestCountriesData({
+            variables: {
+              names: data.Country[0].distanceToOtherCountries.map(anotherCountry => anotherCountry.countryName)
+            }
+          });
+        }
 
         if (!storedCountry.loadedDetails) {
           dispatch({ type: 'ADD_COUNTRY_DETAILS', country: data.Country[0] });
@@ -57,7 +111,25 @@ const CountryDetails = () => {
 
       setCountry(data.Country[0]);
     }
-  }, [data, countries, country, dispatch]);
+  }, [data, countries, country, dispatch, history, getNearestCountriesData, nearestCountries.length]);
+
+  useEffect(() => {
+    if (nearestCountriesData && !loadedNearestCountries) {
+      const updatedCountries = nearestCountries.map(anotherCountry => {
+        const remoteCountry = nearestCountriesData.Country.find(remote => remote.name === anotherCountry.name);
+        return {
+          ...anotherCountry,
+          latitude: remoteCountry.location.latitude,
+          longitude: remoteCountry.location.longitude,
+          flag: remoteCountry.flag.svgFile,
+          emoji: remoteCountry.flag.emoji
+        };
+      });
+
+      setNearestCountries(updatedCountries);
+      setLoadedNearestCountries(true);
+    }
+  }, [nearestCountriesData, loadedNearestCountries, nearestCountries]);
 
   if (loading) return <p className="countries-list-state">Loading...</p>;
   if (error) return <p className="countries-list-state">Error loading countries :(</p>;
@@ -131,6 +203,17 @@ const CountryDetails = () => {
                 onChange={handleInputChange}
               />
             </div>
+
+            <CountriesMap
+              mainCountry={{
+                name: countryName,
+                flag: country.flag.svgFile,
+                emoji: country.flag.emoji,
+                latitude: country.location.latitude,
+                longitude: country.location.longitude
+              }}
+              nearestCountries={loadedNearestCountries ? nearestCountries : []}
+            />
           </fieldset>
 
           <button type="submit">
